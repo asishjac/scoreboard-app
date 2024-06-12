@@ -1,4 +1,4 @@
-# scoreboard-appI
+# scoreboard-app
     Sample implementation of the Football World Cup Score Board
 
 # build
