@@ -39,7 +39,10 @@ public class ScoreBoardService {
         return matches;
     }
 
-    public void finishGame(Match match) {
-
+    public void finishGame(Match match) throws ScoreBoardException {
+        if (match == null) {
+            throw new ScoreBoardException("Invalid match provided");
+        }
+        matches.remove(match);
     }
 }

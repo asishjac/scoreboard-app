@@ -7,11 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Unit test for simple ScoreBoardApp.
  */
-class ScoreBoardAppTest
-{
+class ScoreBoardAppTest {
     @Test
-    public void testApp()
-    {
-        assertTrue( true );
+    public void testApp() {
+        assertTrue(true);
     }
 }
