@@ -4,7 +4,9 @@ import com.score.exception.ScoreBoardException;
 import com.score.model.Match;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreBoardServiceTest {
@@ -17,13 +19,19 @@ public class ScoreBoardServiceTest {
     }
 
     @Test
-    void testStartGame() {
+    void testStartGame() throws ScoreBoardException {
         Match match = scoreBoardService.startGame("Mexico", "Canada");
         assertNotNull(match);
         assertEquals("Mexico", match.getHomeTeam().getName());
         assertEquals("Canada", match.getAwayTeam().getName());
         assertEquals(0, match.getHomeTeam().getGoals());
         assertEquals(0, match.getAwayTeam().getGoals());
+    }
+
+    @Test
+    void testStartGameWhenTeamIsEmptyOrNull() {
+        ScoreBoardException exceptionThrown = assertThrows(ScoreBoardException.class, () -> scoreBoardService.startGame(null, ""), "Custom exception expected");
+        assertEquals("Team name cannot be empty or null", exceptionThrown.getMessage());
     }
 
     @Test
@@ -37,11 +45,8 @@ public class ScoreBoardServiceTest {
     @Test
     void testUpdateGoalsWhenMatchIsNull() {
         Match match1 = null;
-        ScoreBoardException exceptionThrown = assertThrows(ScoreBoardException.class,
-                () -> scoreBoardService.updateGoals(match1, 1, 1),
-                "Custom exception expected");
-        assertEquals("Invalid match provided",
-                exceptionThrown.getMessage());
+        ScoreBoardException exceptionThrown = assertThrows(ScoreBoardException.class, () -> scoreBoardService.updateGoals(match1, 1, 1), "Custom exception expected");
+        assertEquals("Invalid match provided", exceptionThrown.getMessage());
     }
 
     @Test
@@ -75,5 +80,20 @@ public class ScoreBoardServiceTest {
         assertEquals("Australia", gameSummary.get(3).getAwayTeam().getName());
         assertEquals("Germany", gameSummary.get(4).getHomeTeam().getName());
         assertEquals("France", gameSummary.get(4).getAwayTeam().getName());
+    }
+
+    @Test
+    void testFinishGame() throws ScoreBoardException {
+        Match match = scoreBoardService.startGame("Mexico", "Canada");
+        scoreBoardService.finishGame(match);
+        List<Match> summary = scoreBoardService.getSummary();
+        assertFalse(summary.contains(match));
+    }
+
+    @Test
+    void testFinishGameWhenMatchIsNull() {
+        Match match1 = null;
+        ScoreBoardException exceptionThrown = assertThrows(ScoreBoardException.class, () -> scoreBoardService.finishGame(match1), "Custom exception expected");
+        assertEquals("Invalid match provided", exceptionThrown.getMessage());
     }
 }

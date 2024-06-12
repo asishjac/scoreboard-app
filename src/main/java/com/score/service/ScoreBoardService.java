@@ -10,7 +10,10 @@ import java.util.List;
 public class ScoreBoardService {
     private final List<Match> matches = new ArrayList<>();
 
-    public Match startGame(String homeTeam, String awayTeam) {
+    public Match startGame(String homeTeam, String awayTeam) throws ScoreBoardException {
+        if (homeTeam == null || awayTeam == null || homeTeam.isEmpty() || awayTeam.isEmpty()) {
+            throw new ScoreBoardException("Team name cannot be empty or null");
+        }
         Match match = new Match(homeTeam, awayTeam);
         matches.add(match);
         return match;
@@ -26,7 +29,17 @@ public class ScoreBoardService {
     }
 
     public List<Match> getSummary() {
-        return null;
+        matches.sort((m1, m2) -> {
+            int scoreComparison = Integer.compare(m2.getTotalGoals(), m1.getTotalGoals());
+            if (scoreComparison == 0) {
+                return Long.compare(matches.indexOf(m2), matches.indexOf(m1));
+            }
+            return scoreComparison;
+        });
+        return matches;
     }
 
+    public void finishGame(Match match) {
+
+    }
 }
