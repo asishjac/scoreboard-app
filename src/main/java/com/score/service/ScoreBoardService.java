@@ -1,6 +1,7 @@
 package com.score.service;
 
 
+import com.score.exception.ScoreBoardException;
 import com.score.model.Match;
 
 import java.util.ArrayList;
@@ -15,8 +16,17 @@ public class ScoreBoardService {
         return match;
     }
 
-    public Match updateGoals(Match match, int homeTeamGoals, int awayTeamGoals) {
+    public Match updateGoals(Match match, int homeTeamGoals, int awayTeamGoals) throws ScoreBoardException {
+        if (match == null) {
+            throw new ScoreBoardException("Invalid match provided");
+        }
+        match.getHomeTeam().setGoals(homeTeamGoals);
+        match.getAwayTeam().setGoals(awayTeamGoals);
         return match;
+    }
+
+    public List<Match> getSummary() {
+        return null;
     }
 
 }
