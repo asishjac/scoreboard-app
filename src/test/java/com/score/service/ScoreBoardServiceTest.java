@@ -25,4 +25,12 @@ public class ScoreBoardServiceTest {
         assertEquals(0, match.getHomeTeam().getGoals());
         assertEquals(0, match.getAwayTeam().getGoals());
     }
+
+    @Test
+    void testUpdateGoals() {
+        Match match = scoreBoardService.startGame("Mexico", "Canada");
+        scoreBoardService.updateGoals(match, 3, 2);
+        assertEquals(3, match.getHomeTeam().getGoals());
+        assertEquals(2, match.getAwayTeam().getGoals());
+    }
 }

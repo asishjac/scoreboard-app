@@ -14,4 +14,9 @@ public class ScoreBoardService {
         matches.add(match);
         return match;
     }
+
+    public Match updateGoals(Match match, int homeTeamGoals, int awayTeamGoals) {
+        return match;
+    }
+
 }
