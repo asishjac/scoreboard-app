@@ -11,4 +11,4 @@
 ## note
 - Could have split the ScoreBoardService by writing startGame,updateGoals,getSummary and finishGame to different classes.Since the solution doesnot have much complexity,added all the service methods in a single class.
 - Handled the assumption by providing a Map with the position as key and Match as value.Then sorted the map and extracted the list by total goals and insertion order.
-- The librarry now handles simultaneous matches of same teams.
+- The library now handles simultaneous matches of same teams.
