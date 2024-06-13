@@ -96,4 +96,9 @@ public class ScoreBoardServiceTest {
         ScoreBoardException exceptionThrown = assertThrows(ScoreBoardException.class, () -> scoreBoardService.finishGame(match1), "Custom exception expected");
         assertEquals("Invalid match provided", exceptionThrown.getMessage());
     }
+
+    @Test
+    void testSortMapAndReturnSummaryList(){
+
+    }
 }

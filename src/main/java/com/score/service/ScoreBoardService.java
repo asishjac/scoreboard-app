@@ -3,12 +3,15 @@ package com.score.service;
 
 import com.score.exception.ScoreBoardException;
 import com.score.model.Match;
+import com.score.utils.ListToMapConverter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ScoreBoardService {
     private final List<Match> matches = new ArrayList<>();
+    private ListToMapConverter listToMapConverter;
 
     public Match startGame(String homeTeam, String awayTeam) throws ScoreBoardException {
         if (homeTeam == null || awayTeam == null || homeTeam.isEmpty() || awayTeam.isEmpty()) {
@@ -44,5 +47,9 @@ public class ScoreBoardService {
             throw new ScoreBoardException("Invalid match provided");
         }
         matches.remove(match);
+    }
+
+    private List<Match> sortMapAndReturnSummaryList(Map<Integer, Match> summaryMap){
+        return null;
     }
 }
