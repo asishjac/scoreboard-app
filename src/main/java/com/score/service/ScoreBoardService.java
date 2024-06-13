@@ -49,7 +49,7 @@ public class ScoreBoardService {
         matches.remove(match);
     }
 
-    private List<Match> sortMapAndReturnSummaryList(Map<Integer, Match> summaryMap){
+    public List<Match> sortMapAndReturnSummaryList(Map<Integer, Match> summaryMap){
         return null;
     }
 }
