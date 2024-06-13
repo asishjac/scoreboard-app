@@ -2,11 +2,9 @@ package com.score.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class Match {
 
     private Team homeTeam;
