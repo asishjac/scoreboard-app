@@ -102,7 +102,7 @@ public class ScoreBoardServiceTest {
     }
 
     @Test
-    void testSortMapAndReturnSummaryList() {
+    void testSortMapAndReturnSummaryList() throws ScoreBoardException {
         Map<Integer, Match> summaryMap = new HashMap<>();
         summaryMap.put(1, new Match(new Team("Team A", 1), new Team("Team B", 1)));
         summaryMap.put(2, new Match(new Team("Team C", 2), new Team("Team D", 3)));
@@ -125,7 +125,7 @@ public class ScoreBoardServiceTest {
     }
 
     @Test
-    void testSortMapAndReturnSummaryListWhenMatchesAreSimultaneous() {
+    void testSortMapAndReturnSummaryListWhenMatchesAreSimultaneous() throws ScoreBoardException {
         Map<Integer, Match> summaryMap = new HashMap<>();
         summaryMap.put(1, new Match(new Team("Team A", 1), new Team("Team B", 1)));
         summaryMap.put(2, new Match(new Team("Team A", 2), new Team("Team B", 3)));
@@ -147,4 +147,10 @@ public class ScoreBoardServiceTest {
         assertEquals(1, sortedList.get(2).getAwayTeam().getGoals());
     }
 
+    @Test
+    void testSortMapAndReturnSummaryListWhenMapIsNull() {
+        Map<Integer, Match> summaryMap = null;
+        ScoreBoardException exceptionThrown = assertThrows(ScoreBoardException.class, () -> scoreBoardService.sortMapAndReturnSummaryList(summaryMap), "Custom exception expected");
+        assertEquals("Map cannot be null", exceptionThrown.getMessage());
+    }
 }

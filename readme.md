@@ -8,8 +8,7 @@
 # run
     mvn clean test
 
-## assumptions
-- Two matches should not have the same teams playing simultaneously.Because the indexOf() method returns the index of the first occurrence of the match in the list. If there are multiple matches with the same teams, indexOf will always return the same index for all of them, leading to incorrect indexing in the output.
-
 ## note
 - Could have split the ScoreBoardService by writing startGame,updateGoals,getSummary and finishGame to different classes.Since the solution doesnot have much complexity,added all the service methods in a single class.
+- Handled the assumption by providing a Map with the position as key and Match as value.Then sorted the map and extracted the list by total goals and insertion order.
+- The librarry now handles simultaneous matches of same teams.

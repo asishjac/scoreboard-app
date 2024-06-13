@@ -5,9 +5,11 @@ import com.score.model.Match;
 import com.score.model.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ListToMapConverterTest {
@@ -22,9 +24,9 @@ public class ListToMapConverterTest {
     @Test
     void testConvertListToMapWithIndex() throws ScoreBoardException {
         List<Match> matches = Arrays.asList(
-                new Match( new Team("Team A",1),new Team("Team B",1)),
-                new Match( new Team("Team C",2),new Team("Team D",3)),
-                new Match( new Team("Team E",0),new Team("Team F",0))
+                new Match(new Team("Team A", 1), new Team("Team B", 1)),
+                new Match(new Team("Team C", 2), new Team("Team D", 3)),
+                new Match(new Team("Team E", 0), new Team("Team F", 0))
         );
         Map<Integer, Match> result = converter.convertListToMapWithIndex(matches);
 
@@ -38,9 +40,9 @@ public class ListToMapConverterTest {
     @Test
     void testConvertListToMapWithSameTeamName() throws ScoreBoardException {
         List<Match> matches = Arrays.asList(
-                new Match( new Team("Team A",1),new Team("Team B",1)),
-                new Match( new Team("Team A",2),new Team("Team B",3)),
-                new Match( new Team("Team E",0),new Team("Team F",0))
+                new Match(new Team("Team A", 1), new Team("Team B", 1)),
+                new Match(new Team("Team A", 2), new Team("Team B", 3)),
+                new Match(new Team("Team E", 0), new Team("Team F", 0))
         );
         Map<Integer, Match> result = converter.convertListToMapWithIndex(matches);
 
@@ -52,7 +54,7 @@ public class ListToMapConverterTest {
     }
 
     @Test
-    void testConvertListToMapWhenListIsNull(){
+    void testConvertListToMapWhenListIsNull() {
         List<Match> matches = null;
         ScoreBoardException exceptionThrown = assertThrows(ScoreBoardException.class, () -> converter.convertListToMapWithIndex(matches), "Custom exception expected");
 
